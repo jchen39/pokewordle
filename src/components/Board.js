@@ -1,51 +1,29 @@
-import React, { useState } from 'react'
+import React, { useContext } from "react"
+import { AppContext } from "../App"
 import Letter from './Letter';
 
 function Board() {
+  const { correctWord } = useContext(AppContext)
+  const row = []
+  
+  for(let i = 0; i < 6; i++) {
+    const rowLetters = []
+    for(let j = 0; j < correctWord.length; j++) {
+      rowLetters.push(
+        <Letter letterPosition={j} attemptVal={i}/>
+      )
+    }
+
+    row.push(
+      <div className='row'>
+        {rowLetters}
+      </div>
+    )
+  }
+
   return (
     <div className='board'>
-        <div className='row'>
-          <Letter letterPosition={0} attemptVal={0} />
-          <Letter letterPosition={1} attemptVal={0} />
-          <Letter letterPosition={2} attemptVal={0} />
-          <Letter letterPosition={3} attemptVal={0} />
-          <Letter letterPosition={4} attemptVal={0} />
-        </div>
-        <div className='row'>
-          <Letter letterPosition={0} attemptVal={1} />
-          <Letter letterPosition={1} attemptVal={1} />
-          <Letter letterPosition={2} attemptVal={1} />
-          <Letter letterPosition={3} attemptVal={1} />
-          <Letter letterPosition={4} attemptVal={1} />
-        </div>
-        <div className='row'>
-          <Letter letterPosition={0} attemptVal={2} />
-          <Letter letterPosition={1} attemptVal={2} />
-          <Letter letterPosition={2} attemptVal={2} />
-          <Letter letterPosition={3} attemptVal={2} />
-          <Letter letterPosition={4} attemptVal={2} />
-        </div>
-        <div className='row'>
-          <Letter letterPosition={0} attemptVal={3} />
-          <Letter letterPosition={1} attemptVal={3} />
-          <Letter letterPosition={2} attemptVal={3} />
-          <Letter letterPosition={3} attemptVal={3} />
-          <Letter letterPosition={4} attemptVal={3} />
-        </div>
-        <div className='row'>
-          <Letter letterPosition={0} attemptVal={4} />
-          <Letter letterPosition={1} attemptVal={4} />
-          <Letter letterPosition={2} attemptVal={4} />
-          <Letter letterPosition={3} attemptVal={4} />
-          <Letter letterPosition={4} attemptVal={4} />
-        </div>
-        <div className='row'>
-          <Letter letterPosition={0} attemptVal={5} />
-          <Letter letterPosition={1} attemptVal={5} />
-          <Letter letterPosition={2} attemptVal={5} />
-          <Letter letterPosition={3} attemptVal={5} />
-          <Letter letterPosition={4} attemptVal={5} />
-        </div>
+      {row}
     </div>
   )
 }

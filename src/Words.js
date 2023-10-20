@@ -1,4 +1,3 @@
-import wordBank from './wordle-bank.txt'
 export const boardDefault = [
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -16,7 +15,7 @@ export const generateWordSet = async () => {
     await fetch('https://pokeapi.co/api/v2/pokemon?limit=1010')
         .then((response) => response.json())
         .then((data) => {
-            data.results.filter(pk => pk.name.length === 5).map(pk => {
+            data.results.map(pk => {
                 pkArr.push(pk.name)
             })
         })
@@ -25,13 +24,3 @@ export const generateWordSet = async () => {
 
     return { wordSet, randomWord }
 }
-
-/** 
-await fetch(wordBank)
-    .then((response) => response.text())
-    .then((result) => {
-        const wordArr = result.split("\n")
-        randomWord = wordArr[Math.floor(Math.random() * wordArr.length)]
-        wordSet = new Set(wordArr)
-    })
- */

@@ -26,7 +26,7 @@ function App() {
   }, [])
 
   const onSelectLetter = (keyVal) => {
-    if(currAttempt.letterPosition > 4) return;
+    if(currAttempt.letterPosition > correctWord.length) return;
         
     const newBoard = [...board]
     newBoard[currAttempt.attempt][currAttempt.letterPosition] = keyVal
@@ -44,17 +44,17 @@ function App() {
   }
 
   const onEnter = () => {
-    if(currAttempt.letterPosition !== 5) return;
+    if(currAttempt.letterPosition !== correctWord.length) return;
 
     let currWord = ''
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < correctWord.length; i++) {
       currWord += board[currAttempt.attempt][i].toLowerCase()
     }
 
     if(wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPosition: 0 })
     } else {
-      alert("Word not found")
+      alert("That is not a Pokemon!")
     }
 
     if(currWord === correctWord) {
