@@ -15,7 +15,7 @@ export const generateWordSet = async () => {
     await fetch('https://pokeapi.co/api/v2/pokemon?limit=1010')
         .then((response) => response.json())
         .then((data) => {
-            data.results.map(pk => {
+            data.results.filter(pk => !pk.name.includes('-')).map(pk => {
                 pkArr.push(pk.name)
             })
         })

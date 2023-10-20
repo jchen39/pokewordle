@@ -76,6 +76,23 @@ nav h1 {
   background-color: #3a393c;
 }
 
+.hint {
+  flex: 33%;
+  display: block;
+  place-items: center;
+  font-size: 16px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#hidden {
+  visibility: hidden;
+}
+
+#shown {
+  visibility: visible;
+}
+
 .keyboard {
   width: 700px;
   height: 300px;

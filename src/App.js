@@ -4,6 +4,7 @@ import Board from './components/Board';
 import { createContext, useEffect, useState } from 'react';
 import { boardDefault, generateWordSet } from './Words';
 import GameOver from './components/GameOver';
+import axios from 'axios';
 
 export const AppContext = createContext();
 
@@ -17,6 +18,27 @@ function App() {
     gameOver: false,
     guessedWord: false
   })
+  const [pokemonData, setPokemonData] = useState(null);
+
+  useEffect(() => {
+    // Define a function to fetch data
+    const fetchData = async () => {
+      try {
+        // Make an API request to fetch data based on 'correctWord'
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${correctWord}`);
+
+        // Update the state with the received data
+        setPokemonData(response.data);
+      } catch (error) {
+        // Handle any errors here
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    if (correctWord) {
+      fetchData(); // Call the fetch function when 'correctWord' changes
+    }
+  }, [correctWord]);
 
   useEffect(() => {
     generateWordSet().then((words) => {
@@ -85,7 +107,9 @@ function App() {
           disabledLetters,
           setDisabledLetters,
           gameOver,
-          setGameOver
+          setGameOver,
+          pokemonData,
+          setPokemonData
         }}
       >
         <div className='game'>

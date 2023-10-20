@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { AppContext } from "../App"
 import Letter from './Letter';
+import Hints from "./Hints";
 
 function Board() {
   const { correctWord } = useContext(AppContext)
@@ -16,7 +17,7 @@ function Board() {
 
     row.push(
       <div className='row'>
-        {rowLetters}
+        {rowLetters} <Hints attemptVal={i}/>
       </div>
     )
   }
