@@ -11,7 +11,7 @@ function Letter({ letterPosition, attemptVal }) {
   const letter = board[attemptVal][letterPosition]
 
   const correct = correctWord.toUpperCase()[letterPosition] === letter
-  const almost = !correct && letter !== "" && correctWord.includes(letter)
+  const almost = !correct && letter !== "" && correctWord.toUpperCase().includes(letter)
 
   const letterState =
     currAttempt.attempt > attemptVal &&
