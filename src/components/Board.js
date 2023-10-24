@@ -6,6 +6,7 @@ import Hints from "./Hints";
 function Board() {
   const { correctWord } = useContext(AppContext)
   const row = []
+  const hints = []
   
   for(let i = 0; i < 6; i++) {
     const rowLetters = []
@@ -17,14 +18,23 @@ function Board() {
 
     row.push(
       <div className='row'>
-        {rowLetters} <Hints attemptVal={i}/>
+        {rowLetters}
       </div>
+    )
+
+    hints.push(
+      <Hints attemptVal={i}/>
     )
   }
 
   return (
-    <div className='board'>
-      {row}
+    <div className='container'>
+      <div className='board'>
+        {row}
+      </div>
+      <div className='hintboard'>
+        {hints}
+      </div>
     </div>
   )
 }

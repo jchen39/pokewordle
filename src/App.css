@@ -44,6 +44,14 @@ nav h1 {
   flex-direction: column;
 }
 
+.hintboard {
+  width: 100px;
+  height: 550px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
 .row {
   flex: 33%;
   display: flex;
@@ -91,6 +99,12 @@ nav h1 {
 
 #shown {
   visibility: visible;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .keyboard {
